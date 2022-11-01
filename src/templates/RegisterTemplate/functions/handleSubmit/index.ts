@@ -1,20 +1,23 @@
 import { postUser } from 'services/posts/postUser'
 
-export async function handleSubmit(data: any, setError: any, setToken: any) {
-  const { username, email, password } = data
-  const response = await postUser({ username, email, password })
+export async function handleSubmit(
+  data: any,
+  setError: any,
+  setToken: any,
+  navigate: any
+) {
+  const { username, password } = data
+  const response = await postUser({ username, password })
 
-  if (response?.status === 201) {
-    localStorage.setItem('token', response.data)
-    setToken(response.data)
+  if (response?.status === 200) {
+    const responseData = await response.data.data
+    localStorage.setItem('token', responseData.token)
+    setToken(responseData.token)
+    navigate('/set-avatar')
   } else if (response?.status === 400) {
-    setError('email', {
-      type: 'manual',
-      message: 'E-mail ou usuário já existem'
-    })
     setError('username', {
       type: 'manual',
-      message: 'Email ou usuário já existem'
+      message: 'Usuário já cadastrado.'
     })
   } else {
     setError('Algo deu errado. Tente novamente mais tarde.')

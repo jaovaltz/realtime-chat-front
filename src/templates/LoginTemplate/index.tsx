@@ -1,3 +1,4 @@
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { Stack, Typography } from '@mui/material'
 
@@ -15,13 +16,14 @@ import { useUserContext } from 'context/UserContext'
 
 export function LoginTemplate() {
   const { setToken } = useUserContext()
+  const navigate = useNavigate()
   const methods = useForm({ defaultValues, resolver })
 
   return (
     <StackPageCard>
       <ContainerCardForm
         onSubmit={methods.handleSubmit((data) =>
-          handleSubmit(data, methods.setError, setToken)
+          handleSubmit(data, methods.setError, setToken, navigate)
         )}
       >
         <Stack spacing={3}>
@@ -32,7 +34,8 @@ export function LoginTemplate() {
           <Stack spacing={3} alignItems="center">
             <ButtonCustom type="submit">Cadastrar</ButtonCustom>
             <Typography>
-              Não tem uma conta? Então clique aqui e cadastre-se já
+              Não tem uma conta? Então <Link to="/register">clique aqui</Link> e
+              cadastre-se já
             </Typography>
           </Stack>
         </Stack>

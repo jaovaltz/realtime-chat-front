@@ -1,12 +1,20 @@
 import { loginUser } from 'services/posts/loginUser'
 
-export async function handleSubmit(data: any, setError: any, setToken: any) {
+export async function handleSubmit(
+  data: any,
+  setError: any,
+  setToken: any,
+  navigate: any
+) {
   const { username, password } = data
   const response = await loginUser({ username, password })
 
   if (response?.status === 200) {
-    localStorage.setItem('token', response.data)
-    setToken(response.data)
+    const responseData = response.data.data
+
+    localStorage.setItem('token', responseData.token)
+    setToken(responseData.token)
+    navigate('/set-avatar')
   } else {
     setError('username', {
       type: 'manual',

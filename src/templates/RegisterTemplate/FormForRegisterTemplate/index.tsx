@@ -5,7 +5,6 @@ export function FormForRegisterTemplate({ control }: any) {
   return (
     <Stack spacing={3}>
       <ControlTextField name="username" label="Username" control={control} />
-      <ControlTextField name="email" label="E-mail" control={control} />
       <ControlTextField
         name="password"
         label="Senha"

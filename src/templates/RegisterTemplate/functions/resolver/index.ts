@@ -12,12 +12,6 @@ const schema = yup.object().shape({
       'O nome de usuário deve conter apenas letras e números'
     )
     .trim(),
-  email: yup
-    .string()
-    .email('O e-mail precisa ser valido')
-    .required('É necessário informar um email')
-    .max(50, 'O email deve ter no máximo 50 caracteres')
-    .trim(),
   password: yup
     .string()
     .required('É necessário informar uma senha')
