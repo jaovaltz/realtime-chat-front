@@ -32,7 +32,7 @@ export function LoginTemplate() {
           </Typography>
           <FormForLoginTemplate control={methods.control} />
           <Stack spacing={3} alignItems="center">
-            <ButtonCustom type="submit">Cadastrar</ButtonCustom>
+            <ButtonCustom type="submit">Entrar</ButtonCustom>
             <Typography>
               Não tem uma conta? Então <Link to="/register">clique aqui</Link> e
               cadastre-se já

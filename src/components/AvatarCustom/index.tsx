@@ -7,10 +7,10 @@ type AvatarCustomProps = {
 export function AvatarCustom({ src, size, ...props }: AvatarCustomProps) {
   return (
     <Avatar
+      src={src}
+      sizes={size ? size : '100px'}
       sx={{
-        height: size ? '50px' : `${size}px`,
-        width: size ? '50px' : `${size}px`,
-        border: '2px solid black'
+        border: '1px solid #4e0eff'
       }}
       {...props}
     />

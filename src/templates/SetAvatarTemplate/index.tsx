@@ -27,6 +27,7 @@ export function SetAvatarTemplate() {
         <Stack direction="row" spacing={3} alignItems="center">
           {avatarImages?.map((avatarImage, key) => (
             <ButtonToSelectAvatar
+              key={key}
               comparator={avatarSelected === avatarImage}
               avatarImage={avatarImage}
               setAvatarImage={setAvatarSelected}

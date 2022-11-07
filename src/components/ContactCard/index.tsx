@@ -1,23 +1,14 @@
 import { Avatar, Stack, Typography } from '@mui/material'
 
 type ContactCardProps = {
-  contactId: string
-  name: string
-  profilePicture: string
+  contact: any
   comparatorContact: any
-  setCurrentContact: (contact: string) => void
-  handleContactClick: (
-    contact: string,
-    setCurrentContact: (contact: string) => void
-  ) => void
+  handleContactClick: (contact: string) => void
 }
 
 export function ContactCard({
-  name,
-  profilePicture,
-  contactId,
+  contact,
   comparatorContact,
-  setCurrentContact,
   handleContactClick
 }: ContactCardProps) {
   return (
@@ -27,17 +18,18 @@ export function ContactCard({
       width="98%"
       padding="10px"
       borderRadius={10}
-      bgcolor={comparatorContact ? '#151567' : '#595971'}
+      bgcolor={comparatorContact ? '#adacac' : '#595971'}
       alignItems="center"
-      component="button"
-      border="0.5px solid trasnparent"
       sx={{
         cursor: 'pointer',
         '&:hover': { backgroundColor: 'grey' }
       }}
-      onClick={() => handleContactClick(contactId, setCurrentContact)}
+      onClick={() => handleContactClick(contact)}
     >
-      <Avatar src={profilePicture} sx={{ width: 50, height: 50 }} />
+      <Avatar
+        src={contact?.profilePicture}
+        sx={{ width: 50, height: 50, border: '0.5px grey solid' }}
+      />
       <Stack spacing={-0.5}>
         <Typography
           color="#ffffff"
@@ -45,7 +37,7 @@ export function ContactCard({
           fontSize={20}
           variant="h3"
         >
-          {name}
+          {contact?.username}
         </Typography>
       </Stack>
     </Stack>

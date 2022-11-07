@@ -1,21 +1,26 @@
+import { useState } from 'react'
 import { TextField } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send'
 
 type MessageFieldProps = {
-  toUserId: number
-  currentUserId: number
+  contactId?: any
   handleSend: any
+  token?: string
 }
 
 export function MessageField({
   handleSend,
-  toUserId,
-  currentUserId
+  contactId,
+  token
 }: MessageFieldProps) {
+  const [message, setMessage] = useState('')
+
   return (
     <TextField
+      value={message}
+      onChange={(e) => setMessage(e.target.value)}
       autoComplete="off"
-      placeholder="your message goes here"
+      placeholder="digite sua mensagem aqui..."
       color="secondary"
       sx={{
         input: {
@@ -44,7 +49,9 @@ export function MessageField({
           <SendIcon
             sx={{ cursor: 'pointer' }}
             color="secondary"
-            onClick={() => console.log('a')}
+            onClick={() =>
+              handleSend(contactId, message, token) && setMessage('')
+            }
           />
         )
       }}
